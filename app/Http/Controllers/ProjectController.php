@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Project;
+use App\ProjectFile;
 class ProjectController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects=Project::all();
+        $projects=Project::with('company','step')->get();
        return view('project.index',compact('projects'));
     }
 
@@ -46,9 +48,17 @@ class ProjectController extends Controller
         $project_id=Project::create($data)->id;
 
         if($request->hasFile('project_file')){
-
+            $date=Carbon::now()->timestamp;
+            $filename= trim($request->get('req'))."_".$date.'.'.$request->file('project_file')->getClientOriginalExtension();
+            $path=base_path().'/public/up/INIT/';
+            $request->file('project_file')->move($path,$filename);
+            $projectfile=new ProjectFile();
+            $projectfile->project_id=$project_id;
+            $projectfile->project_file=$path.$filename;
+            $projectfile->step_id=1;
+            $projectfile->save();
         }
-        return back();
+       // return back();
     }
 
     /**

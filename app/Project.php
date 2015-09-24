@@ -50,7 +50,11 @@ class Project extends Model
         return $this->belongsTo('App\Step');
     }
 
-    public function project_file(){
+    public function projectFile(){
         return $this->hasMany('App\ProjectFile');
+    }
+
+    public function project_log(){
+        return $this->hasMany('App\ProjectLog');
     }
 }
