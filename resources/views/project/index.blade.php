@@ -167,8 +167,9 @@
                     <td>{!! $project->company->name !!}</td>
                     <td>{!! $project->department !!}</td>
                     <td>{!! $project->applicant !!}</td>
-                    <td>{!! $project->step->name !!}</td>
-                    <td>{!! \App\ProjectFile::where('project_id',$project->id)->where('step_id',$project->step_id)->value('project_file')!!}</td>
+                    <td><a href="#" class="btn btn-primary">{!! $project->step->class !!} {!! $project->step->name !!}</a> </td>
+
+                   <td><a href="/download/{!! $project->id !!}/{!! $project->step_id !!}"> <i class="ace-icon fa fa-download fa-2x"></i></a></td>
                     <td><a href="/projectlog"><i class="ace-icon fa fa-bookmark fa-2x"></i></a></td>
                 </tr>
             @endforeach

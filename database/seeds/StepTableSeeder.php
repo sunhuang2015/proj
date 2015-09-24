@@ -15,12 +15,12 @@ class StepTableSeeder extends Seeder
         \DB::table('steps')->delete();
         \DB::table('steps')->insert(
             [
-                ['name'=>'Init','step'=>1],
-                ['name'=>'IPS','step'=>2],
-                ['name'=>'PO','step'=>4],
-                ['name'=>'Installation','step'=>5],
-                ['name'=>'Accepted','step'=>10],
-                ['name'=>'Reject','step'=>100],
+                ['name'=>'Init','step'=>1,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
+                ['name'=>'IPS','step'=>2,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
+                ['name'=>'PO','step'=>3,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
+                ['name'=>'Installation','step'=>4,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
+                ['name'=>'Accepted','step'=>10,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
+                ['name'=>'Reject','step'=>100,'class'=>'<i class="ace-icon fa fa-pencil align-top bigger-125"></i>'],
             ]
         );
     }

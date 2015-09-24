@@ -31,4 +31,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('project','ProjectController');
+    Route::get('download/{id}/{step_id}',function($id,$step_id){
+        $filename=\App\ProjectFile::where('project_id',$id)->where('step_id',$step_id)->value('project_file');
+       return response()->download($filename);
+    });
 });
