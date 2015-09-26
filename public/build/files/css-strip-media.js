@@ -8,7 +8,7 @@ function remove_media_queries(content, disable_less_than) {
 
 	var disable_less_than = 900;
 	//first remove all comments
-	var selector_regex = /((?:\s*@media\s*[^\{\}]*)?(?:\s*@(?:-(?:moz|webkit|ms|o|khtml)-)?keyframes\s*[^\{\}]*)?(?:\s*[^\{\}]*))(\{)/ig
+	var selector_regex = /((?:\s*@media\s*[^\{\}]*)?(?:\s*@(?:-(?:moz|webkit|ms|o|khtml)-)?keyframes\s*[^\{\}]*)?(?:\s*[^\{\}]*))(\{)/ig;
 
 	var lastCloseBracket = 100000000, media_wrap = false, media_selector = '', pre_media_length = 0;
 	var media_ignore = false;

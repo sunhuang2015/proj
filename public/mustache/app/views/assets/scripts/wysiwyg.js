@@ -148,7 +148,7 @@ jQuery(function($){
 			.on('keydown', function() {
 				destroyResizable();
 			});
-	    }
+	    };
 
 		enableImageResize();
 

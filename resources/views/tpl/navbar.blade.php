@@ -21,7 +21,7 @@
             <a href="#" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    {!! \Config::get('site.project_name') !!}
+                    {!! \Config::get('site.site_name') !!}
                 </small>
             </a>
 

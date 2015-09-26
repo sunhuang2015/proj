@@ -3,29 +3,29 @@
 module.exports = function(params) {
  require('require-csv')//lightweight class for parsing possible csv data
  var fs = require("fs"),
-	 engine = params["engine"]
+	 engine = params["engine"];
 
 
 
- var $type = params["type"] || "page" //page or layout?
- var $name = params["name"] //page or layout name
- var $main_template = null
- var $partials = {} //will hold all compiled partials that will be passed onto the base Mustache template for further processing
- var $vars = {} //holds the variables and data that will be accessed in mustache via page.variableName or layout.variableName
+ var $type = params["type"] || "page"; //page or layout?
+ var $name = params["name"]; //page or layout name
+ var $main_template = null;
+ var $partials = {}; //will hold all compiled partials that will be passed onto the base Mustache template for further processing
+ var $vars = {}; //holds the variables and data that will be accessed in mustache via page.variableName or layout.variableName
 
- var $data_dir = ''
- var $views_dir = ''
+ var $data_dir = '';
+ var $views_dir = '';
 
  this.initiate = function(callback) {//reading and initiate page data from json file
     $data_dir = params.path['data'];
 	var filename = $data_dir +"/"+$type+"s/"+ $name + '.json';
-	var data = fs.readFileSync(filename, 'utf-8')
+	var data = fs.readFileSync(filename, 'utf-8');
 	$vars = JSON.parse(data);
 	
 	if('alias' in $vars) {
 		$name = $vars['alias'];
 		filename = $data_dir +"/"+$type+"s/"+ $name + '.json';
-		data = fs.readFileSync(filename, 'utf-8')
+		data = fs.readFileSync(filename, 'utf-8');
 		$vars = extend(JSON.parse(data), $vars)
 	}
 
@@ -34,7 +34,7 @@ module.exports = function(params) {
 
 	map_script_names();
 	//now load all data relating to this page
-	load_data($data_dir)
+	load_data($data_dir);
 
 	var wait_for_compression = false;
 
@@ -65,7 +65,7 @@ module.exports = function(params) {
 
 	if( !wait_for_compression && typeof callback === "function" ) callback.call();
 
- }
+ };
 
 
  /**
@@ -75,7 +75,7 @@ module.exports = function(params) {
   In your real world application you can load data only when it is needed according to each page inside controllers
  */
  var load_data = function(data_dir) {
-	var data_files = {}
+	var data_files = {};
 
 	var format = new RegExp("([0-9a-z\\-_]+)\\.(json|csv)$" , "i");
 
@@ -84,7 +84,7 @@ module.exports = function(params) {
 	var partial_data_folder = data_dir + "/"+$type +"s/partials/" + $name;
 	var stats;
 	if(fs.existsSync(partial_data_folder) && (stats = fs.statSync(partial_data_folder)) && stats.isDirectory()) {
-		var files = fs.readdirSync(partial_data_folder)
+		var files = fs.readdirSync(partial_data_folder);
 		files.forEach(function (name) {
 			var filename;//file name, which we use as the variable name
 			if (! (filename = name.match(format)) ) return;
@@ -95,7 +95,7 @@ module.exports = function(params) {
 
 	for(var var_name in data_files) if(data_files.hasOwnProperty(var_name)) {
 
-		var new_data
+		var new_data;
 		try {
 			if(data_files[var_name].match(/\.json$/i)) {
 				new_data = fs.readFileSync(data_files[var_name] , 'utf-8');
@@ -108,10 +108,10 @@ module.exports = function(params) {
 				var csv_header = csv_data[0];
 				var length = csv_data.length;
 
-				var json_data = []
+				var json_data = [];
 				for(var i = 1 ; i < length; i++) {
 					var csv_row = csv_data[i];
-					var json_row = {}
+					var json_row = {};
 					for(var j = 0; j < csv_row.length; j++) {
 						json_row[csv_header[j]] = csv_row[j];
 					}
@@ -127,7 +127,7 @@ module.exports = function(params) {
 			continue;
 		}
 		
-		$vars[var_name.replace(/\./g , '_')] = new_data
+		$vars[var_name.replace(/\./g , '_')] = new_data;
 		//here we replace '.' with '_' in variable names, so template compiler can recognize it as a variable not an object
 		//for example change sidebar.navList to sidebar_navList , because sidebar is not an object
 
@@ -135,22 +135,22 @@ module.exports = function(params) {
 
 
   return true;
- }
+ };
 
 
  //in our page's data file, we save short script/style names, which we must map to original file names
  //this way we can easily only change the script-mapping file and changes will be reflected
  var map_script_names = function() {
-	var mappables = ["script" , "style"]
+	var mappables = ["script" , "style"];
 	for(var m in mappables) {
-	  var which = mappables[m]
+	  var which = mappables[m];
 	  if($vars[which+'s']) {//if we have $vars["scripts"] or $vars["styles"]
 		var page_scripts = $vars[which+'s'];
 		var map_json = JSON.parse(fs.readFileSync($data_dir + "/common/"+which+"-mapping"+(params.path['minified'] ? '.min' : '')+".json"));
 		var mapped_scripts = [];
 		for(var i in page_scripts) {
 			if(page_scripts[i] in map_json) {
-				if(typeof map_json[page_scripts[i]] == "string") mapped_scripts.push(map_json[page_scripts[i]])
+				if(typeof map_json[page_scripts[i]] == "string") mapped_scripts.push(map_json[page_scripts[i]]);
 				else if(typeof map_json[page_scripts[i]] == "object") //two or more scripts should be included for this to work, like dataTables, jQuery UI, etc ...
 				{
 					for(var m in map_json[page_scripts[i]])
@@ -172,7 +172,7 @@ module.exports = function(params) {
 		}
 	  }
 	}
- }
+ };
  
 
 
@@ -186,16 +186,16 @@ module.exports = function(params) {
 		return params.engine.compile(fs.readFileSync(template_file , 'utf-8'));
 	} 
 	return null;
- }
+ };
  this.get_vars = function() {
 	return $vars;
- }
+ };
  this.get_var = function(name , undefined) {
 	return name in $vars ? $vars[name] : undefined;
- }
+ };
  this.get_name= function() {
 	return $name;
  }
 
  
-}
+};;

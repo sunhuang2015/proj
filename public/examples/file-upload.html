@@ -88,7 +88,7 @@
 						//code = 2 image load error (possibly file is not an image)
 						//code = 3 preview failed
 					}
-				})
+				});
 				file_input.on('file.error.ace', function(ev, info) {
 					if(info.error_count['ext'] || info.error_count['mime']) alert('Invalid file type! Please select an image!');
 					if(info.error_count['size']) alert('Invalid file size! Maximum 100KB');
@@ -175,14 +175,14 @@
 						//for older browsers that don't support FormData and uploading files via ajax
 						//we use an iframe to upload the form(file) without leaving the page
 
-						deferred = new $.Deferred //create a custom deferred object
+						deferred = new $.Deferred; //create a custom deferred object
 						
 						var temporary_iframe_id = 'temporary-iframe-'+(new Date()).getTime()+'-'+(parseInt(Math.random()*1000));
 						var temp_iframe = 
 								$('<iframe id="'+temporary_iframe_id+'" name="'+temporary_iframe_id+'" \
 								frameborder="0" width="0" height="0" src="about:blank"\
 								style="position:absolute; z-index:-1; visibility: hidden;"></iframe>')
-								.insertAfter($form)
+								.insertAfter($form);
 
 						$form.append('<input type="hidden" name="temporary-iframe-id" value="'+temporary_iframe_id+'" />');
 						
@@ -232,7 +232,7 @@
 						alert("There was an error");
 					})
 					.always(function() {//called on both success and failure
-						if(ie_timeout) clearTimeout(ie_timeout)
+						if(ie_timeout) clearTimeout(ie_timeout);
 						ie_timeout = null;
 						upload_in_progress = false;
 						file_input.ace_file_input('loading', false);

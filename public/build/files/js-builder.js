@@ -60,11 +60,11 @@ jQuery(function($) {
 
 		//sometimes there are more that one scripts under a name (e.g. the alternatives)
 		for(var i = 0; i < script_file.length; i++) {
-			var comment = script_contents[script_file[i]].match(/^\/\*\*([^]+?)\*\//)
+			var comment = script_contents[script_file[i]].match(/^\/\*\*([^]+?)\*\//);
 			if(comment) {
 				//http://phpjs.org/functions/nl2br/
 				var item = $('<div class="list-group-item" />').appendTo(container);
-				comment = $.trim(comment[1]).replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br />' + '$2')
+				comment = $.trim(comment[1]).replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br />' + '$2');
 				item.append('<div class="'+input_type+'"><label><input class="script" type="'+input_type+'" name="'+name+'" data-name="'+script_file[i]+'" value="'+(i)+'" />'+comment+'</label></div>');
 
 				//enable & hide the required items
@@ -116,7 +116,7 @@ jQuery(function($) {
 
 	function build_js() {
 		var compress = $("#id-compress-js").get(0).checked;
-		var js_output = {}
+		var js_output = {};
 		$(['functions', 'elements']).each(function(i, script_type) {
 			if( !(script_type in js_output) ) js_output[script_type] = '';
 			$('.list-group-container[data-type='+script_type+'] input.script').each(function() {
@@ -126,13 +126,13 @@ jQuery(function($) {
 										+ (!script_content.match(/;(?:\s*)$/) ? ";" : "")
 										+ "\n\n";
 				}
-			})
+			});
 
 			if(compress) {
 				var ast = UglifyJS.parse(js_output[script_type]);
 
 				ast.figure_out_scope();
-				var compressor = UglifyJS.Compressor()
+				var compressor = UglifyJS.Compressor();
 				ast = ast.transform(compressor);
 
 				// need to figure out scope again so mangler works optimally			
@@ -150,7 +150,7 @@ jQuery(function($) {
 			$('#btn-save-js-elements,#btn-save-js-functions').addClass('hide');
 
 			js_output = js_output['elements']+';'+js_output['functions'];
-			objectURL1 = js_output.length <= 1 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([js_output], {type : 'text/javascript'}))
+			objectURL1 = js_output.length <= 1 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([js_output], {type : 'text/javascript'}));
 
 			$('#btn-save-js-merged').removeClass('hide')
 			.attr({'download' : 'ace'+(compress ? '.min':'')+'.js'})
@@ -160,8 +160,8 @@ jQuery(function($) {
 		} else {
 			$('#btn-save-js-merged').addClass('hide');
 
-			objectURL1 = js_output['elements'].length == 0  ? 'javascript:void(0)'  : winURL.createObjectURL(new Blob([js_output['elements']], {type : 'text/javascript'}))
-			objectURL2 = js_output['functions'].length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([js_output['functions']], {type : 'text/javascript'}))
+			objectURL1 = js_output['elements'].length == 0  ? 'javascript:void(0)'  : winURL.createObjectURL(new Blob([js_output['elements']], {type : 'text/javascript'}));
+			objectURL2 = js_output['functions'].length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([js_output['functions']], {type : 'text/javascript'}));
 			
 			
 			$('#btn-save-js-elements').removeClass('hide')
@@ -221,7 +221,7 @@ jQuery(function($) {
 
  var storage_name = 'ace.js-selection';
  function save_selection() {
-	var selection = {}
+	var selection = {};
 	$('input.script').each(function() {
 		var name = $(this).attr('data-name');
 		selection[name] = this.checked ? 1 : 0;
@@ -232,7 +232,7 @@ jQuery(function($) {
 	if(title.length == 0) return;
 
 	var selections = ace.storage.get(storage_name);
-	if(!selections) selections = {}
+	if(!selections) selections = {};
 	else if(typeof selections === 'string') selections = JSON.parse(selections);
 	
 	var name = title.replace(/[^\d\w]/g , '-').replace(/\-\-/g, '-').toLowerCase();

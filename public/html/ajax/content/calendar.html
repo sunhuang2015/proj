@@ -89,7 +89,7 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-	var scripts = [null,"../../assets/js/jquery-ui.custom.js","../../assets/js/jquery.ui.touch-punch.js","../../assets/js/date-time/moment.js","../../assets/js/fullcalendar.js","../../assets/js/bootbox.js", null]
+	var scripts = [null,"../../assets/js/jquery-ui.custom.js","../../assets/js/jquery.ui.touch-punch.js","../../assets/js/date-time/moment.js","../../assets/js/fullcalendar.js","../../assets/js/bootbox.js", null];
 	$('.page-content-area').ace_ajax('loadScripts', scripts, function() {
 	  //inline scripts related to this page
 		 jQuery(function($) {
@@ -248,7 +248,7 @@
 			modal.find('button[data-action=delete]').on('click', function() {
 				calendar.fullCalendar('removeEvents' , function(ev){
 					return (ev._id == calEvent._id);
-				})
+				});
 				modal.modal("hide");
 			});
 			

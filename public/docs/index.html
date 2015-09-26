@@ -632,7 +632,7 @@
 			var href = getHref(window.location.hash);
 			if(!href) return false;
 			return gotoUrl(href);			
-		})
+		});
 		$(document).on(ace.click_event+'.help', '.help-more', function(ev) {
 			//clicking on a link triggers 'hashchange', so it's not needed
 			//but if we already are on a hash such as '#hash1'
@@ -651,7 +651,7 @@
 		function gotoUrl(href) {
 			current = section_map[href];
 
-			var url = href.replace(/\..*$/g, '').replace(/#/gi , '')
+			var url = href.replace(/\..*$/g, '').replace(/#/gi , '');
 			var parts = url.split('/');
 			if(parts.length == 1) {
 				if(url.length == 0) url = 'intro';
@@ -717,7 +717,7 @@
 		}
 		
 		function getHref(href) {
-			href = href && href.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+			href = href && href.replace(/.*(?=#[^\s]*$)/, ''); // strip for ie7
 			href = $.trim(href);
 			if(href.match(/[\#\/]$/i)) return false;
 			return href;
@@ -758,7 +758,7 @@
 				else {
 					content = JSON.stringify(JSON.parse(content), null, 2);
 				}
-				content = content.replace(/\>/g, '&gt;').replace(/\</g, '&lt;')
+				content = content.replace(/\>/g, '&gt;').replace(/\</g, '&lt;');
 				Rainbow.color(content, language, function(highlighted_code) {
 					display_code(url, highlighted_code);
 					

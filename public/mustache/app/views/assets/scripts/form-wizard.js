@@ -58,7 +58,7 @@ jQuery(function($) {
 			$('#validation-form').addClass('hide');
 			$('#sample-form').show();
 		}
-	})
+	});
 
 
 
@@ -190,4 +190,4 @@ jQuery(function($) {
 		//in ajax mode, remove remaining elements before leaving page
 		$('[class*=select2]').remove();
 	});
-})
+});

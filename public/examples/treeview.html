@@ -105,7 +105,7 @@
 				var remoteUrl = 'treeview.php';
 				
 				var remoteDateSource = function(options, callback) {
-					var parent_id = null
+					var parent_id = null;
 					if( !('text' in options || 'type' in options) ){
 						parent_id = 0;//load first level data
 					}
@@ -129,7 +129,7 @@
 							}
 						})
 					}
-				}
+				};
 
 				$('#treeview').ace_tree({
 					dataSource: remoteDateSource ,

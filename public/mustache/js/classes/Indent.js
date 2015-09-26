@@ -5,7 +5,7 @@
  so it's not supposed to be a general purpose solution and may not produce exactly the original html view.
 */
 
-var htmlparser = require("htmlparser2")
+var htmlparser = require("htmlparser2");
 var keep_help = false;
 
 module.exports = function(html_input , keep_help_comments, is_ajax_content, callback) {
@@ -20,7 +20,7 @@ module.exports = function(html_input , keep_help_comments, is_ajax_content, call
 	var parser = new htmlparser.Parser(handler);
 	parser.write(html_input);
 	parser.done();
-}
+};
 
 
 

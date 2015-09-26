@@ -30,4 +30,4 @@ jQuery(function($) {
 	$(document).one('ajaxloadstart.page', function(e) {
 		$('#colorbox, #cboxOverlay').remove();
    });
-})
+});

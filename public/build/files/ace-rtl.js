@@ -60,7 +60,7 @@ function makeRTL(css_input) {
 
 
 	//first remove all comments
-	var selector_regex = /((?:\s*@media\s*[^\{\}]*)?(?:\s*@(?:-(?:moz|webkit|ms|o|khtml)-)?keyframes\s*[^\{\}]*)?(?:\s*[^\{\}]*))(\{)/ig
+	var selector_regex = /((?:\s*@media\s*[^\{\}]*)?(?:\s*@(?:-(?:moz|webkit|ms|o|khtml)-)?keyframes\s*[^\{\}]*)?(?:\s*[^\{\}]*))(\{)/ig;
 
 	var lastCloseBracket = 100000000, media_wrap = false, media_selector = '', pre_media_length = 0;
 

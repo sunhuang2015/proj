@@ -86,11 +86,11 @@ jQuery(function($) {
 		start: function(event, ui) {
 			//when an element is moved, it's parent becomes empty with almost zero height.
 			//we set a min-height for it to be large enough so that later we can easily drop elements back onto it
-			ui.item.parent().css({'min-height':ui.item.height()})
+			ui.item.parent().css({'min-height':ui.item.height()});
 			//ui.sender.css({'min-height':ui.item.height() , 'background-color' : '#F5F5F5'})
 		},
 		update: function(event, ui) {
-			ui.item.parent({'min-height':''})
+			ui.item.parent({'min-height':''});
 			//p.style.removeProperty('background-color');
 		}
     });

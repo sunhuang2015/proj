@@ -6,18 +6,18 @@ jQuery(function($) {
  
 
  $.ajax({url: "../assets/css/less/ace-features.less"}).done(function(less_file_data) {
-	var sections = []
+	var sections = [];
 	var regex = /\/\/~([\w\- \&]+)/gi;
 	var matches;
 	while ((matches = regex.exec(less_file_data)) !== null)
 	{
 		sections.push({'title' : matches[1] , 'index': matches.index})
 	}
-	sections.push({'title' : 'EOF' , 'index': less_file_data.length})
+	sections.push({'title' : 'EOF' , 'index': less_file_data.length});
 	
 			
-	var depend_on = {}
-	var depend_off = {}
+	var depend_on = {};
+	var depend_off = {};
 	
 	$(sections).each(function(i, info) {
 		if(info.title == 'EOF') return;
@@ -52,7 +52,7 @@ jQuery(function($) {
 				
 			if(lessvar.value.match(/true|false/i)) {
 				var check = $('<input type="checkbox" name="less-var" data-section="'+section_name+'" />').prependTo(label);
-				check.attr({'id' : 'id-'+lessvar.name , 'data-varname' : lessvar.name})
+				check.attr({'id' : 'id-'+lessvar.name , 'data-varname' : lessvar.name});
 				check.get(0).checked = lessvar.value == 'true';
 				if(lessvar.value == 'true') label.parent().addClass('active');
 			}
@@ -63,7 +63,7 @@ jQuery(function($) {
 					
 					try {
 						var select = $(' <select class="pull-right form-control"  style="width: auto; " name="less-var" data-section="'+section_name+'" /> ').appendTo(label);
-						select.attr({'id' : 'id-'+lessvar.name , 'data-varname' : lessvar.name})
+						select.attr({'id' : 'id-'+lessvar.name , 'data-varname' : lessvar.name});
 						opts = JSON.parse(opts[0]);
 						for(var o in opts) if(opts.hasOwnProperty(o)) {
 							var opt  = $('<option />').appendTo(select);
@@ -81,16 +81,16 @@ jQuery(function($) {
 			}
 
 			
-			var match
+			var match;
 			if(description.length > 0 && (match = description.match(/\+@enable\-([\w\-]+)/))) {
 				var depends = match[1];
 				
 				//check if a variable (feature) depends on another one
 				//we should automatically enable that if so
-				if(!(lessvar.name in depend_on)) depend_on[lessvar.name] = []
+				if(!(lessvar.name in depend_on)) depend_on[lessvar.name] = [];
 				depend_on[lessvar.name].push('enable-'+depends);//enable "'enable-'+depends" when lessvar.name is enabled
 				
-				if(!('enable-'+depends in depend_off)) depend_off['enable-'+depends] = []
+				if(!('enable-'+depends in depend_off)) depend_off['enable-'+depends] = [];
 				depend_off['enable-'+depends].push(lessvar.name);//disable "lessvar.name" when "'enable-'+depends" is disabled
 				//for example auto-disable switch elements when checkboxes are disabled/unselected
 				//or auto-enable checkboxes when switch elements are enabled/selected
@@ -173,11 +173,11 @@ function renderLess(options) {
 	function showResult() {
 		if(options.download === true) {
 			$('#btn-save-css').get(0).click();
-			return;
+
 		}
 		else if(typeof options.callback === 'function' && objectURLs[options.name] != null) {
 			options.callback.call(null);
-			return;
+
 		}
 	}
 	
@@ -233,7 +233,7 @@ function renderLess(options) {
 				$('#modal-ie-alert').removeClass('hide');
 				
 				saveObjectUrl(options.name+'-part2', css_part2);
-			}
+			};
 			showResult();
 		});
 	}
@@ -257,7 +257,7 @@ $('#btn-build-css').on('click', function() {
 	$('a[id*="btn-save-"]').parent().addClass('hide disabled').find('.filesize').remove();
 	$('a[data-id*="btn-save-"]').parent().addClass('hide disabled').find('.filesize').remove();
 
-	var updateVars = {}
+	var updateVars = {};
 	$('input[type=checkbox][name=less-var]').each(function() {
 		var varname = $(this).attr('data-varname');
 		updateVars[varname] = this.checked ? 'true' : 'false';
@@ -332,7 +332,7 @@ $('#btn-build-css').on('click', function() {
 
 	}})//renderLess
 
- })
+ });;
 
 
 
@@ -359,7 +359,7 @@ $('#btn-build-css').on('click', function() {
 
 	  }//function
 	})//renderLess
- }//renderRTL
+ };//renderRTL
 
 
 
@@ -371,10 +371,10 @@ $('#btn-build-css').on('click', function() {
  function saveObjectUrl(name, css_output) {
 	releaseUrlObjects(name);
 
-	objectURLs[name] = css_output.length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([css_output], {type : 'text/css'}))
+	objectURLs[name] = css_output.length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([css_output], {type : 'text/css'}));
 	saved_results[name] =  css_output;
 
-	$('#btn-save-'+name).parent().removeClass('disabled hide')
+	$('#btn-save-'+name).parent().removeClass('disabled hide');
 
 	$('#btn-save-'+name)
 	.attr({'download' : name+'.css'})
@@ -387,9 +387,9 @@ $('#btn-build-css').on('click', function() {
 	releaseUrlObjects(name+'.min');
 	
 	var minimized = new CleanCSS().minify(css_output);
-	objectURLs[name+'.min'] = minimized.length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([minimized], {type : 'text/css'}))
+	objectURLs[name+'.min'] = minimized.length == 0 ? 'javascript:void(0)' : winURL.createObjectURL(new Blob([minimized], {type : 'text/css'}));
 
-	$('a[data-id="btn-save-'+name+'"]').parent().removeClass('disabled hide')
+	$('a[data-id="btn-save-'+name+'"]').parent().removeClass('disabled hide');
 	$('a[data-id="btn-save-'+name+'"]')
 	.attr({'download' : name+'.min.css'})
 	.find('.filesize').remove().end()
@@ -432,7 +432,7 @@ $('#btn-build-css').on('click', function() {
 
  var storage_name = 'ace.css-selection';
  function save_selection() {
-	var selection = {}
+	var selection = {};
 	$('input[type=checkbox][name=less-var]').each(function() {
 		var name = $(this).attr('data-varname').replace(/^enable\-/, '');
 		selection[name] = this.checked ? 1 : 0;
@@ -447,7 +447,7 @@ $('#btn-build-css').on('click', function() {
 	if(title.length == 0) return;
 
 	var selections = ace.storage.get(storage_name);
-	if(!selections) selections = {}
+	if(!selections) selections = {};
 	else if(typeof selections === 'string') selections = JSON.parse(selections);
 	
 	var name = title.replace(/[^\d\w]/g , '-').replace(/\-\-/g, '-').toLowerCase();

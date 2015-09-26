@@ -24,4 +24,4 @@ module.exports = function(partial_name , names , paths) {
 	}
 
 	return $path;
-}
+};

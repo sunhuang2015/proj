@@ -7,7 +7,7 @@ module.exports = function(hogan, paths) {
  this.set_params = function(page_name , layout_name) {
 	$page_name = page_name || 'index';
 	$layout_name = layout_name || 'default';
- }
+ };
 
  hogan.Template.prototype.rp = function(symbol, context, partials, indent) {
 	var partial = this.ep(symbol, partials);
@@ -29,4 +29,4 @@ module.exports = function(hogan, paths) {
 	
     return partial.ri(context, partials, indent);
  }
-}
+};

@@ -4,7 +4,7 @@
     <div class="footer-inner">
         <div class="footer-content">
             <!-- footer content here -->
-            This is a footer page
+            {!! \Config::get('site.foot_name') !!}
         </div>
     </div>
 </div>

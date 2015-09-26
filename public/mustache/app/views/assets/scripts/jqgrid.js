@@ -44,7 +44,7 @@ jQuery(function($) {
 	//resize to fit page size
 	$(window).on('resize.jqGrid', function () {
 		$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
-    })
+    });
 	//resize on sidebar collapse/expand
 	var parent_column = $(grid_selector).closest('[class*="col-"]');
 	$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
@@ -54,7 +54,7 @@ jQuery(function($) {
 				$(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
 			}, 0);
 		}
-    })
+    });
 	
 	//if your grid is inside another element, for example a tab pane, you should use its parent's width:
 	/**
@@ -218,7 +218,7 @@ jQuery(function($) {
 			recreateForm: true,
 			beforeShowForm : function(e) {
 				var form = $(e[0]);
-				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
 				style_edit_form(form);
 			}
 		},
@@ -231,7 +231,7 @@ jQuery(function($) {
 			beforeShowForm : function(e) {
 				var form = $(e[0]);
 				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
-				.wrapInner('<div class="widget-header" />')
+				.wrapInner('<div class="widget-header" />');
 				style_edit_form(form);
 			}
 		},
@@ -242,7 +242,7 @@ jQuery(function($) {
 				var form = $(e[0]);
 				if(form.data('styled')) return false;
 				
-				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
 				style_delete_form(form);
 				
 				form.data('styled', true);
@@ -256,7 +256,7 @@ jQuery(function($) {
 			recreateForm: true,
 			afterShowSearch: function(e){
 				var form = $(e[0]);
-				form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+				form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />');
 				style_search_form(form);
 			},
 			afterRedraw: function(){
@@ -277,13 +277,13 @@ jQuery(function($) {
 				form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
 			}
 		}
-	)
+	);
 
 
 	
 	function style_edit_form(form) {
 		//enable datepicker on "sdate" field and switches for "stock" field
-		form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+		form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true});
 		
 		form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
 				   //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
@@ -294,7 +294,7 @@ jQuery(function($) {
 		var buttons = form.next().find('.EditButton .fm-button');
 		buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
 		buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
-		buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+		buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>');
 		
 		buttons = form.next().find('.navButton a');
 		buttons.find('.ui-icon').hide();
@@ -317,7 +317,7 @@ jQuery(function($) {
 	}
 	function style_search_form(form) {
 		var dialog = form.closest('.ui-jqdialog');
-		var buttons = dialog.find('.EditTable')
+		var buttons = dialog.find('.EditTable');
 		buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
 		buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
 		buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
@@ -327,7 +327,7 @@ jQuery(function($) {
 		var form = $(e[0]);
 		if(form.data('styled')) return false;
 		
-		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
 		style_delete_form(form);
 		
 		form.data('styled', true);
@@ -335,7 +335,7 @@ jQuery(function($) {
 	
 	function beforeEditCallback(e) {
 		var form = $(e[0]);
-		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
 		style_edit_form(form);
 	}
 

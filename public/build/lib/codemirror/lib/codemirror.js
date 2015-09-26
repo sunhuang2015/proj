@@ -5333,7 +5333,7 @@
 
   function detachSharedMarkers(markers) {
     for (var i = 0; i < markers.length; i++) {
-      var marker = markers[i], linked = [marker.primary.doc];;
+      var marker = markers[i], linked = [marker.primary.doc];
       linkedDocs(marker.primary.doc, function(d) { linked.push(d); });
       for (var j = 0; j < marker.markers.length; j++) {
         var subMarker = marker.markers[j];
@@ -7150,7 +7150,11 @@
       list = orphanDelayedCallbacks = [];
       setTimeout(fireOrphanDelayed, 0);
     }
-    function bnd(f) {return function(){f.apply(null, args);};};
+    function bnd(f) {
+      return function () {
+        f.apply(null, args);
+      };
+    }
     for (var i = 0; i < arr.length; ++i)
       list.push(bnd(arr[i]));
   }
@@ -7279,8 +7283,7 @@
     }
     if (props) copyObj(props, inst);
     return inst;
-  };
-
+  }
   function copyObj(obj, target, overwrite) {
     if (!target) target = {};
     for (var prop in obj)

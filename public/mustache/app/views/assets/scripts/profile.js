@@ -110,7 +110,7 @@ jQuery(function($) {
 			//,format: 'yyyy-mm-dd',
 			//viewformat: 'yyyy-mm-dd'
 		}
-	})
+	});
 
     $('#age').editable({
         type: 'spinner',
@@ -167,7 +167,7 @@ jQuery(function($) {
 			Image.prototype.appendChild = function(el){}
 		}
 
-		var last_gritter
+		var last_gritter;
 		$('#avatar').editable({
 			type: 'image',
 			name: 'avatar',
@@ -207,7 +207,7 @@ jQuery(function($) {
 				//for a working upload example you can replace the contents of this function with 
 				//examples/profile-avatar-update.js
 
-				var deferred = new $.Deferred
+				var deferred = new $.Deferred;
 
 				var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
 				if(!value || value.length == 0) {
@@ -233,7 +233,7 @@ jQuery(function($) {
 						class_name: 'gritter-info gritter-center'
 					});
 					
-				 } , parseInt(Math.random() * 800 + 800))
+				 } , parseInt(Math.random() * 800 + 800));
 
 				return deferred.promise();
 				
@@ -408,7 +408,7 @@ jQuery(function($) {
 	})
 	.end().find('.date-picker').datepicker().next().on(ace.click_event, function(){
 		$(this).prev().focus();
-	})
+	});
 	$('.input-mask-phone').mask('(999) 999-9999');
 
 	$('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);

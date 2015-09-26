@@ -5,7 +5,7 @@ var engine = require("hogan.js")//require(engine_name == "hogan" ? "hogan.js" : 
   , extend= require('xtend')
   , AutoLoader = require('./classes/autoload-'+engine_name+'.js');
 
-var output_folder = 'output_folder' in arg ? arg['output_folder']+'/ajax' : 'output/ajax'
+var output_folder = 'output_folder' in arg ? arg['output_folder']+'/ajax' : 'output/ajax';
 
 createFolder(output_folder+'/content');
 
@@ -35,14 +35,14 @@ var path =
  assets : '../../assets',
  images : '../../assets/images',
  minified: ''
-}
+};
 
 for(var p in path) {
 	if ('path_'+p in arg) path[p] = arg['path_'+p]
 }
 
 var site = JSON.parse(fs.readFileSync(path['data']+'/common/site.json' , 'utf-8'));//this site some basic site variables
-site['protocol'] = 'http:'
+site['protocol'] = 'http:';
 //override config file with command line options
 for(var k in site) {
 	if (k in arg) site[k] = arg[k]
@@ -51,11 +51,11 @@ if(site['protocol'] == false) site['protocol'] = '';
 site['ajax'] = true;
 
 
-var Sidenav_Class = require('./classes/Sidenav')
-var sidenav = new Sidenav_Class()
+var Sidenav_Class = require('./classes/Sidenav');
+var sidenav = new Sidenav_Class();
 
-var Page_Class = require('./classes/Page')
-var Indentation = require('./classes/Indent')
+var Page_Class = require('./classes/Page');
+var Indentation = require('./classes/Indent');
 var autoload = new AutoLoader(engine , path);
 
 if(site['development'] == true) {
@@ -74,7 +74,7 @@ if(site['development'] == true) {
 generate(null);
 var page_views_folder = path["views"]+"/pages";
 if(fs.existsSync(page_views_folder) && (stats = fs.statSync(page_views_folder)) && stats.isDirectory()) {
-	var files = fs.readdirSync(page_views_folder)
+	var files = fs.readdirSync(page_views_folder);
 	files.forEach(function (name) {
 		var filename;//file name, which we use as the variable name
 		if (! (filename = name.match(/(.+?)\.(mustache|html)$/)) ) return;
@@ -98,28 +98,28 @@ function generate(page_name) {
 		}
 		
 
-		var context = { "page":{} , "layout":layout.get_vars(), "path" : path , "site" : site }
+		var context = { "page":{} , "layout":layout.get_vars(), "path" : path , "site" : site };
 		context['breadcrumbs'] = sidenav.get_breadcrumbs();
 
 		context['createLinkFunction'] = function() {
 			return function(text) {
 				return '../'+text+'.html';
 			}
-		}
+		};
 		context['createAjaxLinkFunction'] = function() {
 			return function(text) {
 				return '#page/'+text;
 			}
-		}
+		};
 
 		autoload.set_params("" , layout_name);
 
-		var rendered_output = engine_name == "hogan" ? layout.get_template().render(context) : (layout.get_template())(context)
+		var rendered_output = engine_name == "hogan" ? layout.get_template().render(context) : (layout.get_template())(context);
 		Indentation(rendered_output , site['onpage_help'], false, function(result) {
 			var output_file = output_folder+'/index.html';
 			fs.writeFileSync( __dirname + '/'+output_file , result, 'utf-8' );
 			console.log(output_file);
-		})
+		});
 	
 		return;
 	}
@@ -140,18 +140,18 @@ function generate(page_name) {
 		}*/
 
 
-		var context = { "page":page.get_vars() , "layout":layout.get_vars(), "path" : path , "site" : site }
+		var context = { "page":page.get_vars() , "layout":layout.get_vars(), "path" : path , "site" : site };
 		//context['breadcrumbs'] = sidenav.get_breadcrumbs();
 		context['createLinkFunction'] = function() {
 			return function(text) {
 				return '../'+text+'.html';
 			}
-		}
+		};
 		context['createAjaxLinkFunction'] = function() {
 			return function(text) {
 				return '#page/'+text;
 			}
-		}
+		};
 
 
 		autoload.set_params(page.get_name() , layout_name);

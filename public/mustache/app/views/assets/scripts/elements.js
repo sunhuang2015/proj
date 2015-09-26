@@ -11,7 +11,7 @@ jQuery(function($) {
 	
 	$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		//if($(e.target).attr('href') == "#home") doSomethingNow();
-	})
+	});
 
 	
 	/**
@@ -216,7 +216,7 @@ jQuery(function($) {
 
 
 
-	$('#spinner-opts small').css({display:'inline-block', width:'60px'})
+	$('#spinner-opts small').css({display:'inline-block', width:'60px'});
 
 	var slide_styles = ['', 'green','red','purple','orange', 'dark'];
 	var ii = 0;

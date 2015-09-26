@@ -10,7 +10,7 @@ jQuery(function($){
 		else if(currentTab == 'inbox') {
 			Inbox.show_list();
 		}
-	})
+	});
 
 
 	
@@ -118,7 +118,7 @@ jQuery(function($){
 			$('.message-container').find('.message-loading-overlay').remove();
 			message
 				.addClass('message-inline-open')
-				.append('<div class="message-content" />')
+				.append('<div class="message-content" />');
 			var content = message.find('.message-content:last').html( $('#id-message-content').html() );
 
 			//remove scrollbar elements
@@ -215,7 +215,7 @@ jQuery(function($){
 			
 			Inbox.display_bar(count);
 		}
-	}
+	};
 
 	//show message list (back from writing mail or reading a message)
 	Inbox.show_list = function() {
@@ -227,7 +227,7 @@ jQuery(function($){
 
 		$('.message-list').removeClass('hide').next().addClass('hide');
 		//hide the message item / new message window and go back to list
-	}
+	};
 
 	//show write mail form
 	Inbox.show_form = function() {
@@ -262,7 +262,7 @@ jQuery(function($){
 			$('.message-form').get(0).reset();
 			
 		}, 300 + parseInt(Math.random() * 300));
-	}
+	};
 
 
 

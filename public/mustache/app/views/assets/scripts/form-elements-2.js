@@ -28,7 +28,7 @@ jQuery(function($){
 	
 	//////////////////
 	//select2
-	$('.select2').css('width','200px').select2({allowClear:true})
+	$('.select2').css('width','200px').select2({allowClear:true});
 	$('#select2-multiple-style .btn').on('click', function(e){
 		var target = $(this).find('input[type=radio]');
 		var which = parseInt(target.val());
@@ -78,7 +78,7 @@ jQuery(function($){
 
 			cb(matches);
 		}
-	 }
+	 };
 
 	 $('input.typeahead').typeahead({
 		hint: true,
@@ -102,4 +102,4 @@ jQuery(function($){
 		$('.multiselect').multiselect('destroy');
 	});
 
-});
+});;

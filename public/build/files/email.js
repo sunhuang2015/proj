@@ -33,13 +33,13 @@ jQuery(function($) {
 
   $('#id-btn-preview').on('click', function() {
 	  var options = getOptions();
-	  updateDirection(options['rtl'])
-	  updateStyles(options)
+	  updateDirection(options['rtl']);
+	  updateStyles(options);
 
 	  var raw_html = window.editor_html.getValue();
 	  
 	  var convertFrame = $('#convert-frame').get(0);
-	  var frameWin = convertFrame.contentWindow || convertFrame
+	  var frameWin = convertFrame.contentWindow || convertFrame;
 	  var output_html = frameWin.convert_email(raw_html, options);
 
 	  $('#preview-dialog').modal('show');
@@ -55,19 +55,19 @@ jQuery(function($) {
   var winURL = (window.URL || window.webkitURL);
   $('#id-btn-save').on('click', function() {
 	  var options = getOptions();
-	  updateDirection(options['rtl'])
-	  updateStyles(options)
+	  updateDirection(options['rtl']);
+	  updateStyles(options);
 	  
 	  var raw_html = window.editor_html.getValue();
 	  
 	  var convertFrame = $('#convert-frame').get(0);
-	  var frameWin = convertFrame.contentWindow || convertFrame
+	  var frameWin = convertFrame.contentWindow || convertFrame;
 	  var output_html = frameWin.convert_email(raw_html, options);
 
 	  try {
 		if(objectURL1) winURL.releaseObjectURL(objectURL1);
 	  } catch(e) {}
- 	  objectURL1 = winURL.createObjectURL(new Blob([output_html], {type : 'text/html'}))
+ 	  objectURL1 = winURL.createObjectURL(new Blob([output_html], {type : 'text/html'}));
 	 
 	  $('#btn-save-html')
 	  .attr({'download' : 'output-email.html'})
@@ -83,9 +83,9 @@ jQuery(function($) {
   }).parent().tooltip({placement: 'right', container: 'body'});
   
   function getOptions() {
-	  var options = {}
+	  var options = {};
 	  $('.option-group .list-group-item input[type=text]').each(function() {
-		var name = $(this).attr('name').match(/option\[([\w\d\-]+)\]/i)
+		var name = $(this).attr('name').match(/option\[([\w\d\-]+)\]/i);
 		if(name) {
 			var val = $(this).val();
 			options[name[1]] = val;
@@ -103,23 +103,23 @@ jQuery(function($) {
 	  
 	  options['wrap-size'] = parseInt(options['wrap-size']) || 0;
 	  
-	  options['rtl'] = $('.option-group .list-group-item input[name="option[rtl]"]')[0].checked
+	  options['rtl'] = $('.option-group .list-group-item input[name="option[rtl]"]')[0].checked;
 
 	  return options;
   }
 
   function updateStyles(options) {
 	  var convertFrame = $('#convert-frame').get(0);
-	  var frameWin = convertFrame.contentWindow || convertFrame
+	  var frameWin = convertFrame.contentWindow || convertFrame;
 	   
 	  //also update the convert-html's font size and color according to options
-	  var doc = (convertFrame.contentDocument || convertFrame.contentWindow.document)
+	  var doc = (convertFrame.contentDocument || convertFrame.contentWindow.document);
 	  if (doc.styleSheets) {
 		var theRules = null;
 		if (doc.styleSheets[2].cssRules)
-			theRules = doc.styleSheets[2].cssRules
+			theRules = doc.styleSheets[2].cssRules;
 		else if (doc.styleSheets[2].rules)
-			theRules = document.styleSheets[2].rules
+			theRules = document.styleSheets[2].rules;
 		else theRules = null;
 			
 		if(theRules) {
@@ -132,8 +132,8 @@ jQuery(function($) {
   
   function updateDirection(rtl) {
 	  var convertFrame = $('#convert-frame').get(0);
-	  var frameWin = convertFrame.contentWindow || convertFrame
-	  var doc = (convertFrame.contentDocument || convertFrame.contentWindow.document)
+	  var frameWin = convertFrame.contentWindow || convertFrame;
+	  var doc = (convertFrame.contentDocument || convertFrame.contentWindow.document);
 	  if(rtl) $(doc.body).addClass('rtl');
 	  else $(doc.body).removeClass('rtl');
   }
@@ -156,10 +156,10 @@ jQuery(function($) {
 	if($name.length == 0) return;
 	
 	var emails = ace.storage.get('ace.saved-emails');
-	if(!emails) emails = {}
+	if(!emails) emails = {};
 	else if(typeof emails === 'string') emails = JSON.parse(emails);
 	
-	emails['saved-'+$name] = {name: $.trim(name), options: getOptions(), content: content , title: title}
+	emails['saved-'+$name] = {name: $.trim(name), options: getOptions(), content: content , title: title};
 	ace.storage.set('ace.saved-emails', JSON.stringify(emails));
 	
 	var opt = $('<option />').appendTo('#saved-templates');
@@ -182,10 +182,10 @@ jQuery(function($) {
 	else if( name.match(/^demo\-/i) ) {
 		$.ajax({url: 'demo/'+name+'.html', cache: false})
 		.done(function(res) {
-			var email = {}
+			var email = {};
 			email.content = res;
 			email.title = self.options[self.selectedIndex].innerHTML;
-			email.options = {}
+			email.options = {};
 			
 			if(name == 'demo-contrast') {
 				email.options['body-background'] = '#113D68';
@@ -202,7 +202,7 @@ jQuery(function($) {
 			loadTemplate(email);
 		});
 	}
-  })
+  });
   
   function loadTemplate(email) {
 	window.editor_html.setValue(email.content);

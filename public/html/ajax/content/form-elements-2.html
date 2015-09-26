@@ -170,7 +170,7 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-	var scripts = [null,"../../assets/js/jquery.bootstrap-duallistbox.js","../../assets/js/jquery.raty.js","../../assets/js/bootstrap-multiselect.js","../../assets/js/select2.js","../../assets/js/typeahead.jquery.js", null]
+	var scripts = [null,"../../assets/js/jquery.bootstrap-duallistbox.js","../../assets/js/jquery.raty.js","../../assets/js/bootstrap-multiselect.js","../../assets/js/select2.js","../../assets/js/typeahead.jquery.js", null];
 	$('.page-content-area').ace_ajax('loadScripts', scripts, function() {
 	  //inline scripts related to this page
 		 jQuery(function($){
@@ -203,7 +203,7 @@
 		
 		//////////////////
 		//select2
-		$('.select2').css('width','200px').select2({allowClear:true})
+		$('.select2').css('width','200px').select2({allowClear:true});
 		$('#select2-multiple-style .btn').on('click', function(e){
 			var target = $(this).find('input[type=radio]');
 			var which = parseInt(target.val());
@@ -253,7 +253,7 @@
 	
 				cb(matches);
 			}
-		 }
+		 };
 	
 		 $('input.typeahead').typeahead({
 			hint: true,
@@ -277,6 +277,6 @@
 			$('.multiselect').multiselect('destroy');
 		});
 	
-	});
+	});;
 	});
 </script>

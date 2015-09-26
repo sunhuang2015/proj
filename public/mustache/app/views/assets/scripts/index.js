@@ -13,7 +13,7 @@ jQuery(function($) {
 			animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
 			size: size
 		});
-	})
+	});
 
 	$('.sparkline').each(function(){
 		var $box = $(this).closest('.infobox');
@@ -39,7 +39,7 @@ jQuery(function($) {
 	{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
 	{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
 	{ label: "other",  data: 10, color: "#FEE074"}
-  ]
+  ];
   function drawPieChart(placeholder, data, position) {
  	  $.plot(placeholder, data, {
 		series: {
@@ -154,7 +154,7 @@ jQuery(function($) {
 	$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
 	function tooltip_placement(context, source) {
 		var $source = $(source);
-		var $parent = $source.closest('.tab-content')
+		var $parent = $source.closest('.tab-content');
 		var off1 = $parent.offset();
 		var w1 = $parent.width();
 
@@ -206,10 +206,10 @@ jQuery(function($) {
 	$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
 		var offset = $(this).offset();
 
-		var $w = $(window)
+		var $w = $(window);
 		if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
 			$(this).addClass('dropup');
 		else $(this).removeClass('dropup');
 	});
 
-})
+});

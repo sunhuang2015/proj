@@ -25,7 +25,7 @@ var old_icons_1 = [
 	"icon-rotate-270",
 	"icon-flip-horizontal",
 	"icon-flip-vertical" 
-]
+];
 
 var old_icons_2 = [
 	"icon-glass",
@@ -406,7 +406,7 @@ var old_icons_2 = [
 	"icon-vk",
 	"icon-weibo",
 	"icon-renren"
-]
+];
 
 
 
@@ -421,7 +421,7 @@ var old_icons_2 = [
 var new_names_1 = {
 	"icon-fixed-with" : "fa-fw",
 	"icon-large" : "fa-lg"
-}
+};
 
 var new_names_2 = {
   	"icon-ban-circle" : "fa-ban",
@@ -568,7 +568,7 @@ var new_names_2 = {
 	"icon-youtube-sign" : "fa-youtube-square",
 	"icon-zoom-in" : "fa-search-plus",
 	"icon-zoom-out" : "fa-search-minus"
-}
+};
 
 
 
@@ -595,7 +595,7 @@ var replace_callback = function(text, icon ) {
 	}
 
 	return icon;
-}
+};
 
 function replace_icons(input) {
   return input.replace(regex_search , replace_callback);
@@ -614,20 +614,19 @@ var ext_regex = !('ext' in arg) ? null //to check and update specific file exten
 
 //iterate through directories and replace all icons!
 function update_file(path) {
-	if( ext_regex && !path.match(ext_regex) ) return;;//return if desired extension doesn't match
-	
-	var content = fs.readFileSync(path , 'utf-8')
-	content = replace_icons(content)
+	if (ext_regex && !path.match(ext_regex)) return;//return if desired extension doesn't match
+	var content = fs.readFileSync(path , 'utf-8');
+	content = replace_icons(content);
 	fs.writeFileSync(path, content, 'utf-8')
 }
 function update_directory(path) {
- 	var files = fs.readdirSync(path)
+ 	var files = fs.readdirSync(path);
 	files.forEach(function (name) {
-		var file = path+'/'+name
-		var stats = fs.statSync(file)
+		var file = path+'/'+name;
+		var stats = fs.statSync(file);
 		
 		if( stats.isDirectory() ) {
-			update_directory(file)
+			update_directory(file);
 			return;
 		}
 
@@ -638,10 +637,10 @@ function update_directory(path) {
 function update(path) {
 	if( !fs.existsSync(path) ) return;
 
-	var stats = fs.statSync(path)
+	var stats = fs.statSync(path);
 	if( stats.isDirectory() ) {
-		update_directory(path)
-		return;
+		update_directory(path);
+
 	}
 
 	else update_file(path);

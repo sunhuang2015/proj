@@ -15,7 +15,7 @@ jQuery(function($) {
 		//restore original, default marginTop
 		sidebar.style.marginTop = '';
 
-		$window.off('scroll.ace.top_menu')
+		$window.off('scroll.ace.top_menu');
 		return;
 	}
 

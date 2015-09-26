@@ -1,4 +1,4 @@
-var defaultTextStyles = {}
+var defaultTextStyles = {};
 defaultTextStyles['font-family'] = 'AceFont1';
 defaultTextStyles['font-size'] = '13';
 defaultTextStyles['font-weight'] = 'normal';
@@ -14,12 +14,12 @@ function addZero(n, reslen) {
     return res;
 }
 function rgbToHex(str) {
-	var m
+	var m;
 	if( (m = str.match(/(rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+)\s*)?\))/ )) ) {
 		var color = '#' 
 		+ addZero(parseInt(m[2]).toString(16))
 		+ addZero(parseInt(m[3]).toString(16))
-		+ addZero(parseInt(m[4]).toString(16))
+		+ addZero(parseInt(m[4]).toString(16));
 		
 		str = str.replace(m[1], color)
 	}
@@ -77,7 +77,7 @@ function convert(content, options) {
 	
 	var output =
 	res_div.html()
-	.replace(/###amp;/g, '&')
+	.replace(/###amp;/g, '&');
 	//.replace(/AceFont1/ig, options['font-family']).replace(/AceFont2/ig, options['font-family']);
 	
 	output = rgbToHexAll(output);
@@ -87,7 +87,7 @@ function convert(content, options) {
 	
 
 	//wrap contents inside a slightly bigger td
-	var wrap_size = parseInt(options['wrap-size'])
+	var wrap_size = parseInt(options['wrap-size']);
 	if(wrap_size > 0) {
 		var wrap_width = parseInt(options['base-width']) + wrap_size;
 		if( div.find('.navbar').length == 0 )
@@ -156,7 +156,7 @@ function convert(content, options) {
 				parent_td.closest('.table-row-td').attr('class', 'table-row-fixed-td');
 			}
 
-			var margins = {'1': 0, '2': 18, '3': 16, '4': 16, '6': 9}
+			var margins = {'1': 0, '2': 18, '3': 16, '4': 16, '6': 9};
 			var match_margin = null;
 			if( pclass && (match_margin = pclass.match(/margin\-(\d+)/i)) ) {
 				match_margin = parseInt(match_margin[1]);
@@ -168,7 +168,7 @@ function convert(content, options) {
 			
 			var grid_size = ((options['base-width'] - (2 * row_padding)) - (siblings * margin)) / 12;
 
-			var is_last_child = ($elem.nextAll('[class*=col]').length == 0) 
+			var is_last_child = ($elem.nextAll('[class*=col]').length == 0);
 
 			var col_margin = is_last_child ? 0 : margin;
 			var width = 0;
@@ -176,10 +176,10 @@ function convert(content, options) {
 			if(clen && clen[1]) {
 				var clen = parseInt(clen[1]);
 				
-				width = parseInt(grid_size * clen)
+				width = parseInt(grid_size * clen);
 				new_table.attr('width', width + col_margin);
 				
-				if(col_margin > 0) new_table.css('padding-' + (options['rtl'] ? 'left' : 'right'), col_margin)
+				if(col_margin > 0) new_table.css('padding-' + (options['rtl'] ? 'left' : 'right'), col_margin);
 				//columns with extra padding
 				new_table.closest('td[class*="table-row-"]').css({'padding-left': row_padding, 'padding-right': row_padding});
 			} else {
@@ -295,7 +295,7 @@ function convert(content, options) {
 				table.attr('bgcolor', bg).css('background-color', bg)
 				.find('td')
 				.attr({'bgcolor': bg, 'align': 'center'})
-				.css('background-color', bg)
+				.css('background-color', bg);
 			
 			
 				var hr_padding = null;
@@ -326,7 +326,7 @@ function convert(content, options) {
 			$elem.attr('data-skipstyle', true);
 			
 			var navbar_h = $elem[0].style.height || 50;
-			table = $('<table class="navbar-row" height="'+navbar_h+'" width="'+options['base-width']+'"><tr><td class="navbar-row-td" valign="middle" height="'+navbar_h+'" width="'+options['base-width']+'"></td></tr></table>').appendTo(table.find('td'))
+			table = $('<table class="navbar-row" height="'+navbar_h+'" width="'+options['base-width']+'"><tr><td class="navbar-row-td" valign="middle" height="'+navbar_h+'" width="'+options['base-width']+'"></td></tr></table>').appendTo(table.find('td'));
 			table.find('td').attr('data-uid', unique_id);
 		 }
 
@@ -381,7 +381,7 @@ function convert(content, options) {
 	 
 	 
 	 if(child.nodeType == 1) {
-		var mirror = res_div.find('[data-uid='+child.getAttribute('data-uid')+']')
+		var mirror = res_div.find('[data-uid='+child.getAttribute('data-uid')+']');
 		if(mirror.length == 1) {
 
 		var attributes = child.attributes;
@@ -396,7 +396,7 @@ function convert(content, options) {
 
 
 		
-		var applied_styles = {}
+		var applied_styles = {};
 		var elem = child;
 		var $elem = $(elem);
 		var rules = $elem.attr('data-skipstyle') ? null : window.getMatchedCSSRules(elem);
@@ -411,17 +411,17 @@ function convert(content, options) {
 				applied_styles[elem.style[k]] = true;
 			}
 
-			var styles = {}
+			var styles = {};
 
 			var computedStyle = window.getComputedStyle(elem, null);
 			for(var k in applied_styles) {
 				k = $.trim(k.toLowerCase());
-				var m
+				var m;
 				//exclude margin for now, not supported by outlook
 				if((m = k.match(/^(margin|padding)(?:-(left|right|top|bottom))?/))) {
 					if( $elem.hasClass('row') || $elem.is('[class*=col]') || $elem.hasClass('clearfix') ) continue;
 					var name = m[1];
-					if( !(name in styles) ) styles[name] = {}
+					if( !(name in styles) ) styles[name] = {};
 					if( typeof m[2] !== 'undefined' ) styles[name][m[2]] = computedStyle[name+'-'+m[2]];
 					else {
 						var val = computedStyle[name];
@@ -435,7 +435,7 @@ function convert(content, options) {
 				else if(k.match(/border/)) {//only supports border/border-top/border-bottom/border-left/border-right
 					if( (m = k.match(/^(border)(?:-(left|right|top|bottom))?(?:-(width|color|style))?$/)) ) {
 						if( typeof m[2] !== 'undefined' && typeof m[3] !== 'undefined' ) {
-							if( !('border' in styles) ) styles['border'] = {}
+							if( !('border' in styles) ) styles['border'] = {};
 								styles['border'][m[2]] = rgbToHex(computedStyle['border-'+m[2]]);
 						}
 					}

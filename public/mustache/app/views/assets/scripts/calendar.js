@@ -154,7 +154,7 @@ jQuery(function($) {
 			modal.find('button[data-action=delete]').on('click', function() {
 				calendar.fullCalendar('removeEvents' , function(ev){
 					return (ev._id == calEvent._id);
-				})
+				});
 				modal.modal("hide");
 			});
 			
@@ -175,4 +175,4 @@ jQuery(function($) {
 	});
 
 
-})
+});

@@ -1993,7 +1993,7 @@
   <script src="../../assets/js/excanvas.js"></script>
 <![endif]-->
 <script type="text/javascript">
-	var scripts = [null,"../../assets/js/jquery-ui.custom.js","../../assets/js/jquery.ui.touch-punch.js","../../assets/js/jquery.gritter.js","../../assets/js/bootbox.js","../../assets/js/jquery.easypiechart.js","../../assets/js/date-time/bootstrap-datepicker.js","../../assets/js/jquery.hotkeys.js","../../assets/js/bootstrap-wysiwyg.js","../../assets/js/select2.js","../../assets/js/fuelux/fuelux.spinner.js","../../assets/js/x-editable/bootstrap-editable.js","../../assets/js/x-editable/ace-editable.js","../../assets/js/jquery.maskedinput.js", null]
+	var scripts = [null,"../../assets/js/jquery-ui.custom.js","../../assets/js/jquery.ui.touch-punch.js","../../assets/js/jquery.gritter.js","../../assets/js/bootbox.js","../../assets/js/jquery.easypiechart.js","../../assets/js/date-time/bootstrap-datepicker.js","../../assets/js/jquery.hotkeys.js","../../assets/js/bootstrap-wysiwyg.js","../../assets/js/select2.js","../../assets/js/fuelux/fuelux.spinner.js","../../assets/js/x-editable/bootstrap-editable.js","../../assets/js/x-editable/ace-editable.js","../../assets/js/jquery.maskedinput.js", null];
 	$('.page-content-area').ace_ajax('loadScripts', scripts, function() {
 	  //inline scripts related to this page
 		 jQuery(function($) {
@@ -2108,7 +2108,7 @@
 				//,format: 'yyyy-mm-dd',
 				//viewformat: 'yyyy-mm-dd'
 			}
-		})
+		});
 	
 	    $('#age').editable({
 	        type: 'spinner',
@@ -2165,7 +2165,7 @@
 				Image.prototype.appendChild = function(el){}
 			}
 	
-			var last_gritter
+			var last_gritter;
 			$('#avatar').editable({
 				type: 'image',
 				name: 'avatar',
@@ -2205,7 +2205,7 @@
 					//for a working upload example you can replace the contents of this function with 
 					//examples/profile-avatar-update.js
 	
-					var deferred = new $.Deferred
+					var deferred = new $.Deferred;
 	
 					var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
 					if(!value || value.length == 0) {
@@ -2231,7 +2231,7 @@
 							class_name: 'gritter-info gritter-center'
 						});
 						
-					 } , parseInt(Math.random() * 800 + 800))
+					 } , parseInt(Math.random() * 800 + 800));
 	
 					return deferred.promise();
 					
@@ -2406,7 +2406,7 @@
 		})
 		.end().find('.date-picker').datepicker().next().on(ace.click_event, function(){
 			$(this).prev().focus();
-		})
+		});
 		$('.input-mask-phone').mask('(999) 999-9999');
 	
 		$('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);

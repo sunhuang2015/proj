@@ -1323,7 +1323,7 @@
 				
 				//////////////////
 				//select2
-				$('.select2').css('width','200px').select2({allowClear:true})
+				$('.select2').css('width','200px').select2({allowClear:true});
 				$('#select2-multiple-style .btn').on('click', function(e){
 					var target = $(this).find('input[type=radio]');
 					var which = parseInt(target.val());
@@ -1373,7 +1373,7 @@
 			
 						cb(matches);
 					}
-				 }
+				 };
 			
 				 $('input.typeahead').typeahead({
 					hint: true,
@@ -1397,7 +1397,7 @@
 					$('.multiselect').multiselect('destroy');
 				});
 			
-			});
+			});;
 		</script>
 
 		<!-- the following scripts are used in demo only for onpage help and you don't need them -->

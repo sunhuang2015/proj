@@ -8,4 +8,4 @@ jQuery(function($) {
 		$('.modal.aside').remove();
 		$(window).off('.aside')
 	});
-})
+});

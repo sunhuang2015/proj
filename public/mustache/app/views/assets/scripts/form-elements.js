@@ -192,8 +192,8 @@ jQuery(function($) {
 	//dynamically change allowed formats by changing allowExt && allowMime function
 	$('#id-file-format').removeAttr('checked').on('change', function() {
 		var whitelist_ext, whitelist_mime;
-		var btn_choose
-		var no_icon
+		var btn_choose;
+		var no_icon;
 		if(this.checked) {
 			btn_choose = "Drop images here or click to choose";
 			no_icon = "ace-icon fa fa-picture-o";
@@ -216,7 +216,7 @@ jQuery(function($) {
 			'no_icon': no_icon,
 			'allowExt': whitelist_ext,
 			'allowMime': whitelist_mime
-		})
+		});
 		file_input.ace_file_input('reset_input');
 		
 		file_input
@@ -339,7 +339,7 @@ jQuery(function($) {
 			}
 			*/
 		  }
-		)
+		);
 
 		//programmatically add a new
 		var $tag_obj = $('#form-field-tags').data('tag');
@@ -360,7 +360,7 @@ jQuery(function($) {
 		no_icon:'ace-icon fa fa-cloud-upload',
 		droppable:true,
 		thumbnail:'large'
-	})
+	});
 	
 	//chosen plugin inside a modal will have a zero width because the select element is originally hidden
 	//and its width cannot be determined.
@@ -373,7 +373,7 @@ jQuery(function($) {
 				$(this).find('.chosen-search input').css('width' , '200px');
 			});
 		}
-	})
+	});
 	/**
 	//or you can activate the chosen plugin after modal is shown
 	//this way select element becomes visible with dimensions and chosen works as expected

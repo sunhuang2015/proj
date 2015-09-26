@@ -4,7 +4,7 @@ module.exports = function() {
  var $navList = null;
  var $active_page = null;
  var $breadcrumbs = {};
- var nav_items = {}
+ var nav_items = {};
 
 
  this.mark_active_item = function(active_page) {
@@ -14,13 +14,13 @@ module.exports = function() {
 		this.mark_items($navList , 1);
 		if('links' in $breadcrumbs && 'reverse' in $breadcrumbs['links']) $breadcrumbs['links'].reverse();
 	}
- }
+ };
  this.set_items = function(navList) {
 	$navList = navList;
- }
+ };
  this.get_items = function() {
 	return nav_items;
- }
+ };
  
 
  this.mark_items = function(navList , level) {
@@ -82,7 +82,7 @@ module.exports = function() {
 	}//for
 	
 	return ret;
- }
+ };
 
  
  //this navList is used multiple times to produce multiple pages in one place
@@ -99,7 +99,7 @@ module.exports = function() {
 			this.reset_items(item['submenu']);
 		}
 	}
- }
+ };
 
 
 
@@ -107,4 +107,4 @@ module.exports = function() {
 	return $breadcrumbs
  }
 
-}
+};

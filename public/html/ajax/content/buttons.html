@@ -1809,13 +1809,13 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-	var scripts = [null, null]
+	var scripts = [null, null];
 	$('.page-content-area').ace_ajax('loadScripts', scripts, function() {
 	  //inline scripts related to this page
 		 jQuery(function($) {
 		$('#loading-btn').on(ace.click_event, function () {
 			var btn = $(this);
-			btn.button('loading')
+			btn.button('loading');
 			setTimeout(function () {
 				btn.button('reset')
 			}, 2000)

@@ -5,7 +5,7 @@ var engine = require("hogan.js")//require(engine_name == "hogan" ? "hogan.js" : 
   , extend= require('xtend')
   , AutoLoader = require('./classes/autoload-'+engine_name+'.js');
 
-var output_folder = 'output_folder' in arg ? arg['output_folder'] : 'output'
+var output_folder = 'output_folder' in arg ? arg['output_folder'] : 'output';
 
 var path_parts = output_folder.split(/[\\\/]/g);
 var new_folder = '';
@@ -31,7 +31,7 @@ var path =
  assets : '../assets',
  images : '../assets/images',
  minified: ''
-}
+};
 
 for(var p in path) {
 	if ('path_'+p in arg) path[p] = arg['path_'+p]
@@ -39,7 +39,7 @@ for(var p in path) {
 
 
 var site = JSON.parse(fs.readFileSync(path['data']+'/common/site.json' , 'utf-8'));//this site some basic site variables
-site['protocol'] = 'http:'
+site['protocol'] = 'http:';
 //override config file with command line options
 for(var k in site) {
 	if (k in arg) site[k] = arg[k]
@@ -48,11 +48,11 @@ if(site['protocol'] == false) site['protocol'] = '';
 
 
 
-var Sidenav_Class = require('./classes/Sidenav')
-var sidenav = new Sidenav_Class()
+var Sidenav_Class = require('./classes/Sidenav');
+var sidenav = new Sidenav_Class();
 
-var Page_Class = require('./classes/Page')
-var Indentation = require('./classes/Indent')
+var Page_Class = require('./classes/Page');
+var Indentation = require('./classes/Indent');
 var autoload = new AutoLoader(engine , path);
 
 if(site['development'] == true) {
@@ -70,7 +70,7 @@ if(site['development'] == true) {
 //iterate over all pages and generate the static html file
 var page_views_folder = path["views"]+"/pages";
 if(fs.existsSync(page_views_folder) && (stats = fs.statSync(page_views_folder)) && stats.isDirectory()) {
-	var files = fs.readdirSync(page_views_folder)
+	var files = fs.readdirSync(page_views_folder);
 	files.forEach(function (name) {
 		var filename;//file name, which we use as the variable name
 		if (! (filename = name.match(/(.+?)\.(mustache|html)$/)) ) return;
@@ -94,13 +94,13 @@ function generate(page_name) {
 		}
 
 
-		var context = { "page":page.get_vars() , "layout":layout.get_vars(), "path" : path , "site" : site }
+		var context = { "page":page.get_vars() , "layout":layout.get_vars(), "path" : path , "site" : site };
 		context['breadcrumbs'] = sidenav.get_breadcrumbs();
 		context['createLinkFunction'] = function() {
 			return function(text) {
 				return text+'.html';
 			}
-		}
+		};
 
 		autoload.set_params(page.get_name() , layout_name);
 

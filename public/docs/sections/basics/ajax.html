@@ -322,7 +322,7 @@ var is_working = $('#some-content-area').ace_ajax('working');
 				function which loads and runs scripts and caches them. It prevents scripts from running more than once:
 <pre data-language="html">
  <script type="text/javascript">
- var scripts = ['path/to/plugin1.js', 'path/to/other-plugin.js']
+ var scripts = ['path/to/plugin1.js', 'path/to/other-plugin.js'];
  $('#some-content-area').ace_ajax('loadScripts', scripts, function() {
    //put inline scripts related to this page here
    alert('hello!');
@@ -340,7 +340,7 @@ var is_working = $('#some-content-area').ace_ajax('working');
 				In that case you can load the script using jQuery's getScript function:
 <pre data-language="html">
  <script type="text/javascript">
- var scripts = ['path/to/plugin1.js', 'path/to/other-plugin.js']
+ var scripts = ['path/to/plugin1.js', 'path/to/other-plugin.js'];
  $('#some-content-area').ace_ajax('loadScripts', scripts, function() {
    //for example put inline scripts related to this page here
    jQuery.getScript('path/to/mypage-script.js', function() {

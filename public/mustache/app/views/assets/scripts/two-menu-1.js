@@ -11,9 +11,9 @@ jQuery(function($) {
 			$('#navbar').addClass('h-navbar');
 		 }
 		 else {
-			$('#sidebar2').removeClass('sidebar-fixed')
+			$('#sidebar2').removeClass('sidebar-fixed');
 			$('#navbar').removeClass('h-navbar');
 		 }
 	 }
    }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebar').hasClass('sidebar-fixed')]);
-})
+});
